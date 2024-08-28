@@ -1,0 +1,18 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "sendder-app"
+version = "0.1.0"
+description = ""
+authors = ["Valfonsoardila10 <victoradila@gmail.com>"]
+readme = "Readme.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+reflex = "^0.5.9"
+
+[tool.poetry.scripts]
+create-skln = "skln:main"
+test = "pytest"
