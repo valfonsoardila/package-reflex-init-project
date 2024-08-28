@@ -1,2 +1,10 @@
+*.db
+*.py[cod]
+.cursorignore
 .venv/
-.__pycache__/
+.vscode/
+.web
+__pycache__/
+assets/external/
+poetry.lock
+venv/
