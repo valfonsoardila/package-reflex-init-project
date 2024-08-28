@@ -4,7 +4,7 @@ import subprocess
 
 
 def create_skeleton():
-    name_folder_origin = "src"
+    name_root = "app"
     # Ejecutar reflex init
     subprocess.run(["reflex", "init"], check=True)
 
@@ -21,12 +21,24 @@ def create_skeleton():
             created_folder_name = item
             break
 
-    # Renombrar la carpeta encontrada a "src"
+    # Renombrar la carpeta encontrada
     if created_folder_name:
-        os.rename(created_folder_name, name_folder_origin)
+        os.rename(created_folder_name, name_root)
 
         # Actualizar el archivo rxconfig.py
-        update_rxconfig_app_name(name_folder_origin)
+        update_rxconfig_app_name(name_root)
+
+    # Renombrar el archivo disparador de la aplicación
+    for item in os.listdir():
+        if os.path.isdir(item) and item.lower() == name_root:
+            # Entra y buscar el archivo que concuerda con el valor de original_name + .py
+            # Y lo reemplaza por el valor de expected_folder_name + .py
+            for file in os.listdir(item):
+                if file.lower() == f"{created_folder_name}.py":
+                    os.rename(
+                        os.path.join(item, file),
+                        os.path.join(item, f"{name_root}.py"),
+                    )
 
 
 def update_rxconfig_app_name(new_app_name):
