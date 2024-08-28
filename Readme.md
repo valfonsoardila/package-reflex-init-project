@@ -25,3 +25,7 @@ poetry install
 ```sh
 poetry shell
 ```
+### `Crear proyecto con reflex`
+```sh
+poetry run create-skln
+```
