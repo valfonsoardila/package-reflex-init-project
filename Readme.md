@@ -17,8 +17,11 @@ python3 -m venv .venv
 ```powershell
 python3 -m venv .venv
 ```
-
-
+### `Instalar dependencias`
 ```sh
 poetry install
+```
+### `Activar entorno virtual`
+```sh
+poetry shell
 ```
