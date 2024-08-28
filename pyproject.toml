@@ -3,12 +3,17 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-package-mode = false
+# definir los scripts que se van a ejecutar para la creación de la aplicación
+name = "skln"
+version = "0.1.0"
+description = ""
+authors = ["Valfonsoardila10 <victoradila@gmail.com>"]
+readme = "Readme.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
 reflex = "^0.5.9"
 
 [tool.poetry.scripts]
+# definir los scripts que se van a ejecutar para la creación de la aplicación
 create-skln = "skln:main"
-test = "pytest"
