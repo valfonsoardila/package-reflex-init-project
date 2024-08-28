@@ -3,11 +3,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "sendder-app"
-version = "0.1.0"
-description = ""
-authors = ["Valfonsoardila10 <victoradila@gmail.com>"]
-readme = "Readme.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
