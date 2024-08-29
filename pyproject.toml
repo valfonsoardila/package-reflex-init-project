@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 # definir los scripts que se van a ejecutar para la creación de la aplicación
-name = "skln"
+name = "core"
 version = "0.1.0"
 description = ""
 authors = ["Valfonsoardila10 <victoradila@gmail.com>"]
@@ -16,4 +16,6 @@ reflex = "^0.5.9"
 
 [tool.poetry.scripts]
 # definir los scripts que se van a ejecutar para la creación de la aplicación
-create-skln = "skln:main"
+create-skln = "core:create_skeleton"
+--frontend = "core:run_frontend"
+--backend = "core:run_backend"
