@@ -1,6 +1,7 @@
 import os
 import shutil
 import subprocess
+import socket
 
 
 def create_skeleton():
@@ -39,6 +40,10 @@ def create_skeleton():
                         os.path.join(item, file),
                         os.path.join(item, f"{name_root}.py"),
                     )
+                    break
+            break
+    # Eliminar __pycache__
+    delete_pycache()
 
 
 def update_rxconfig_app_name(new_app_name):
@@ -58,6 +63,29 @@ def update_rxconfig_app_name(new_app_name):
                 file.write(line)
 
 
+def get_free_port(default_port):
+    """Intenta usar el puerto predeterminado, si está ocupado, busca otro libre."""
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        try:
+            s.bind(("", default_port))
+            return default_port
+        except OSError:
+            s.bind(("", 0))
+            return s.getsockname()[1]
+
+
+def run_frontend(default_port=8080):
+    """Ejecuta el frontend en el puerto especificado o en uno dinámico."""
+    frontend_port = get_free_port(default_port)
+    subprocess.run(["reflex", "run", f"--frontend-port={frontend_port}"], check=True)
+
+
+def run_backend(default_port=8000):
+    """Ejecuta el backend en el puerto especificado o en uno dinámico."""
+    backend_port = get_free_port(default_port)
+    subprocess.run(["reflex", "run", f"--backend-port={backend_port}"], check=True)
+
+
 def delete_pycache():
     # Recorrer el árbol de directorios y eliminar __pycache__
     for root, dirs, files in os.walk("."):
@@ -65,12 +93,3 @@ def delete_pycache():
             if dir_name == "__pycache__":
                 pycache_path = os.path.join(root, dir_name)
                 shutil.rmtree(pycache_path)
-
-
-def main():
-    create_skeleton()
-    delete_pycache()
-
-
-if __name__ == "__main__":
-    main()
